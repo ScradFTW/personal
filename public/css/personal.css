@@ -1,0 +1,34 @@
+body {
+    background: #1b1e21;
+}
+
+#terminal {
+    color: limegreen;
+    font-family: monospace;
+}
+
+.card {
+    margin-top: 3%;
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 60%;
+    border-color: #1b1e21;
+    color: azure;
+    opacity: 0.95;
+    -webkit-box-shadow: 13px 1px 54px 16px rgba(0,0,0,0.75);
+    -moz-box-shadow: 13px 1px 54px 16px rgba(0,0,0,0.75);
+    box-shadow: 13px 1px 54px 16px rgba(0,0,0,0.75);
+}
+
+.card-header {
+    font-family: monospace;
+    padding: 0 0 0 1%;
+    height: 6%;
+    background-color: #4e555b;
+    font-size: 1.15em;
+}
+
+.card-body {
+    font-family: 'Archivo', sans-serif;
+    background-color: #6c757d;
+}
