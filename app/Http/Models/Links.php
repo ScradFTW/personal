@@ -6,13 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Links extends Model
 {
-    const TYPE = 'type';
-
     public static function allOrderedByType()
     {
         $links = self::query()
             ->select('url', 'types.name as type_name', 'links.name as link_name')
-            ->orderBy(self::TYPE)
+            ->orderBy("type")
             ->join('types', 'links.type', 'types.id')
             ->get();
 

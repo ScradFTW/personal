@@ -2,6 +2,14 @@ body {
     background: #1b1e21;
 }
 
+#matrix {
+    position: absolute;
+    top: 2em;
+    left: 0;
+    width: 100%;
+    z-index: -100;
+}
+
 #terminal {
     color: limegreen;
     font-family: monospace;
@@ -15,9 +23,9 @@ body {
     border-color: #1b1e21;
     color: azure;
     opacity: 0.95;
-    -webkit-box-shadow: 13px 1px 54px 16px rgba(0,0,0,0.75);
-    -moz-box-shadow: 13px 1px 54px 16px rgba(0,0,0,0.75);
-    box-shadow: 13px 1px 54px 16px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 13px 1px 54px 16px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 13px 1px 54px 16px rgba(0, 0, 0, 0.75);
+    box-shadow: 13px 1px 54px 16px rgba(0, 0, 0, 0.75);
 }
 
 .card-header {
@@ -31,4 +39,8 @@ body {
 .card-body {
     font-family: 'Archivo', sans-serif;
     background-color: #6c757d;
+}
+
+.draggable {
+    display: none;
 }

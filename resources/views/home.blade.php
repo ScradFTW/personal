@@ -21,6 +21,8 @@
 </head>
 
 <body>
+
+
 <div id="terminal">
     <i>$</i> ./brad_jobe_personal_site.sh<span id="cursor"> </span>
 </div>
@@ -39,5 +41,7 @@
         @endforeach
     </div>
 @endforeach
+
+<canvas id="matrix"></canvas>
 </body>
 </html>
