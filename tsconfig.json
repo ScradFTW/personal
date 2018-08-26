@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "outFile": "public/js/compiled_personal.js",
+    "target": "es5",
+    "module": "amd",
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "removeComments": true
+  },
+  "include": [
+    "resources/ts/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
