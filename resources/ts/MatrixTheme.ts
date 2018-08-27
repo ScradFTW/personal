@@ -56,7 +56,7 @@ export class MatrixTheme implements Theme {
     }
 
     private static drawCode(data: string[], canvas: any, ctx: any): void {
-        //making the canvas full screen
+        //make the canvas full screen
         canvas.height = window.innerHeight;
         canvas.width = window.innerWidth;
 
