@@ -2,6 +2,12 @@ body {
     background: #1b1e21;
 }
 
+#themes {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
 #matrix {
     position: absolute;
     top: 2em;

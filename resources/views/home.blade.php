@@ -19,6 +19,12 @@
 
 <body>
 
+<select id="themes" class="">
+    <option value="Matrix">Matrix</option>
+    <option value="Pretentious">Pretentious</option>
+    <option value="1996">1996</option>
+</select>
+
 @foreach($links_content as $type_name => $links)
     <div class="card draggable window">
         <h4 class="card-header">{{$type_name}}</h4>

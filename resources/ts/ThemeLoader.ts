@@ -1,22 +1,35 @@
 import {MatrixTheme} from "./MatrixTheme"
 
-export class ThemeLoader {
-
-    private readonly themes: { [keyName: string]: Theme } = {
-        "Matrix": new MatrixTheme()
-    };
-
-    private currentTheme: any | null;
-
-    constructor(private readonly name: string) {
+class PretentiousTheme implements Theme {
+    destruct(): void {
     }
 
-    getTheme(): Theme {
+    init(): void {
+    }
+}
+
+class Theme1996 implements Theme {
+    destruct(): void {
+    }
+
+    init(): void {
+    }
+}
+
+export class ThemeLoader {
+    private readonly themes: { [keyName: string]: Theme } = {
+        "Matrix": new MatrixTheme(),
+        "Pretentious": new PretentiousTheme(),
+        "1996": new Theme1996()
+    };
+
+    private currentTheme: Theme | null;
+
+    load(name: string): void {
         if (this.currentTheme != null)
             this.currentTheme.destruct();
 
-        this.currentTheme = this.themes[this.name];
-
-        return this.currentTheme;
+        this.currentTheme = this.themes[name];
+        this.currentTheme.init();
     }
 }
