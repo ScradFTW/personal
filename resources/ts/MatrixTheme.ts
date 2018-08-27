@@ -5,39 +5,45 @@ export class MatrixTheme implements Theme {
     private static readonly URL: string
         = "https://raw.githubusercontent.com/torvalds/linux/master/security/integrity/evm/evm_crypto.c";
 
+    /**
+     * Initialize the state of the Matrix Theme.
+     */
     init(): void {
+        // Add the terminal and matrix (code background) elements to the page
         $("body").prepend(
             '<div id="terminal"><i>$</i> ./brad_jobe_personal_site.sh<span id="cursor"> </span></div>'
         ).append(
             '<canvas id="matrix"></canvas>'
         );
 
-        let draggables: JQuery<HTMLElement> = $(".draggable");
-
-        draggables.fadeIn(1000);
+        // grab all our draggable elements and initialize their state
+        let draggables: JQuery<HTMLElement> = $(".draggable").fadeIn(1000);
 
         MatrixTheme.makeTopElem(draggables, false);
         draggables.draggable().mousedown((elem) => {
+            // set all the draggable windows to be bottom elements, then set the currently selected one to the top one
             MatrixTheme.makeTopElem(draggables, false);
             MatrixTheme.makeTopElem($(elem.currentTarget));
         });
 
         $.get(MatrixTheme.URL, (data) => {
-
             let tokens: string[] = data.match(/\S+/g) || [];
             let canvas: any = document.getElementById("matrix");
             let ctx = canvas.getContext("2d");
 
             MatrixTheme.drawCode(tokens, canvas, ctx);
-
             setInterval(() => {
                 // clear the canvas of previous data
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
+                // draw the next version of the background code
                 MatrixTheme.drawCode(tokens, canvas, ctx);
             }, 250);
         });
     }
 
+    /**
+     * When we want to change the theme, we need to remove the elements specific to this theme
+     */
     destruct(): void {
         $("body").remove("#terminal").remove("#matrix");
     }
@@ -57,8 +63,7 @@ export class MatrixTheme implements Theme {
         let font_size = 12;
 
         ctx.font = font_size + "px monospace";
-        //chinese characters - taken from the unicode charset
-        let columns = canvas.width / font_size; //number of columns for the rain
+        let columns = canvas.width / font_size;
         let rows = canvas.height / font_size;
 
         for (let c = 0; c < columns; c++) {

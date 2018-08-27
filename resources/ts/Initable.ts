@@ -1,5 +1,4 @@
 interface Initable {
-
     /**
      * Initialize the object
      */
