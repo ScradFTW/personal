@@ -1,3 +1,0 @@
-interface Initable {
-    init():void;
-}

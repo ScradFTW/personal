@@ -1,2 +1,0 @@
-interface Theme extends Initable {
-}
