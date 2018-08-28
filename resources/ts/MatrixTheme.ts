@@ -47,6 +47,7 @@ export class MatrixTheme implements Theme {
     destruct(): void {
         $("#terminal").remove();
         $("#matrix").remove();
+        $(".draggable").draggable("disable")
     }
 
     private makeTopElem(elems: any, top: boolean = true): void {
