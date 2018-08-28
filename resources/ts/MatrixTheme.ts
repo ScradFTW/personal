@@ -19,11 +19,11 @@ export class MatrixTheme implements Theme {
         // grab all our draggable elements and initialize their state
         let draggables: JQuery<HTMLElement> = $(".draggable").fadeIn(1000);
 
-        MatrixTheme.makeTopElem(draggables, false);
+        this.makeTopElem(draggables, false);
         draggables.draggable().mousedown((elem) => {
             // set all the draggable windows to be bottom elements, then set the currently selected one to the top one
-            MatrixTheme.makeTopElem(draggables, false);
-            MatrixTheme.makeTopElem($(elem.currentTarget));
+            this.makeTopElem(draggables, false);
+            this.makeTopElem($(elem.currentTarget));
         });
 
         $.get(MatrixTheme.URL, (data) => {
@@ -31,12 +31,12 @@ export class MatrixTheme implements Theme {
             let canvas: any = document.getElementById("matrix");
             let ctx = canvas.getContext("2d");
 
-            MatrixTheme.drawCode(tokens, canvas, ctx);
+            this.drawCode(tokens, canvas, ctx);
             setInterval(() => {
                 // clear the canvas of previous data
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 // draw the next version of the background code
-                MatrixTheme.drawCode(tokens, canvas, ctx);
+                this.drawCode(tokens, canvas, ctx);
             }, 250);
         });
     }
@@ -45,17 +45,18 @@ export class MatrixTheme implements Theme {
      * When we want to change the theme, we need to remove the elements specific to this theme
      */
     destruct(): void {
-        $("body").remove("#terminal").remove("#matrix");
+        $("#terminal").remove();
+        $("#matrix").remove();
     }
 
-    private static makeTopElem(elems: any, top: boolean = true): void {
+    private makeTopElem(elems: any, top: boolean = true): void {
         let zIndex = top ? 1 : 0;
         let color = top ? "#3b4b72" : "#4e555b";
 
         elems.css("z-index", zIndex).css("border-color", color).css("border-width", "5px");
     }
 
-    private static drawCode(data: string[], canvas: any, ctx: any): void {
+    private drawCode(data: string[], canvas: any, ctx: any): void {
         //make the canvas full screen
         canvas.height = window.innerHeight;
         canvas.width = window.innerWidth;

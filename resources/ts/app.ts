@@ -6,13 +6,13 @@ $(document).ready(function () {
     let loader: ThemeLoader = new ThemeLoader();
 
     let loadTheme = (elem: JQuery<HTMLElement>) => {
-        loader.load(elem.text());
+        loader.load(<string>elem.val());
     };
 
-    let selected: JQuery<HTMLElement> = $("#themes option:selected");
+    let themes: JQuery<HTMLElement> = $("#themes");
 
-    loadTheme(selected);
-    $("#themes").change(() => {
-        loadTheme(selected);
+    loadTheme(themes);
+    themes.change((e) => {
+        loadTheme($(e.currentTarget));
     });
 });
