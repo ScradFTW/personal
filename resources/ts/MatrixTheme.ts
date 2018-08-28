@@ -9,6 +9,8 @@ export class MatrixTheme implements Theme {
      * Initialize the state of the Matrix Theme.
      */
     init(): void {
+        $(".draggable").css('display', 'none');
+
         // Add the terminal and matrix (code background) elements to the page
         $("body").prepend(
             '<div id="terminal"><i>$</i> ./brad_jobe_personal_site.sh<span id="cursor"> </span></div>'
@@ -47,7 +49,7 @@ export class MatrixTheme implements Theme {
     destruct(): void {
         $("#terminal").remove();
         $("#matrix").remove();
-        $(".draggable").draggable("disable")
+        $(".draggable").css('display', '').draggable("disable");
     }
 
     private makeTopElem(elems: any, top: boolean = true): void {

@@ -21,6 +21,11 @@ body {
     font-family: monospace;
 }
 
+.btn {
+    background-color: black;
+    border-color: #6cb2eb;
+}
+
 .card {
     margin-top: 3%;
     margin-left: 10%;
@@ -32,6 +37,7 @@ body {
     -webkit-box-shadow: 13px 1px 54px 16px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 13px 1px 54px 16px rgba(0, 0, 0, 0.75);
     box-shadow: 13px 1px 54px 16px rgba(0, 0, 0, 0.75);
+    background-color: black;
 }
 
 .card-header {
@@ -43,10 +49,9 @@ body {
 }
 
 .card-body {
-    font-family: 'Archivo', sans-serif;
-    background-color: #6c757d;
-}
-
-.draggable {
-    display: none;
+    color: limegreen;
+    font-family: "monospace";
+    background-color: black;
+    border: 1px solid limegreen;
+    margin:1em;
 }

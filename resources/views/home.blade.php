@@ -27,7 +27,7 @@
 
 @foreach($links_content as $type_name => $links)
     <div class="card draggable window">
-        <h4 class="card-header">{{$type_name}}</h4>
+        <h4 class="card-header"><i>{{$type_name}}</i></h4>
         @foreach($links as $link)
             <div class="card-body">
                 <h5 class="card-title">{{$link->link_name}}</h5>
