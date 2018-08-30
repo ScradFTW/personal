@@ -1,0 +1,52 @@
+body {
+    background: #1b1e21;
+}
+
+.btn {
+    background-color: black;
+    border-color: #6cb2eb;
+}
+
+.card {
+    margin-top: 3%;
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 60%;
+    border-color: #1b1e21;
+    color: azure;
+    opacity: 0.95;
+    -webkit-box-shadow: 13px 1px 54px 16px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 13px 1px 54px 16px rgba(0, 0, 0, 0.75);
+    box-shadow: 13px 1px 54px 16px rgba(0, 0, 0, 0.75);
+    background-color: black;
+}
+
+.card-header {
+    font-family: monospace;
+    padding: 0 0 0 1%;
+    height: 6%;
+    background-color: #4e555b;
+    font-size: 1.15em;
+}
+
+.card-body {
+    color: limegreen;
+    font-family: "monospace";
+    background-color: black;
+    border: 1px solid limegreen;
+    margin:1em;
+}
+
+
+#matrix {
+    position: absolute;
+    top: 2em;
+    left: 0;
+    width: 100%;
+    z-index: -100;
+}
+
+#terminal {
+    color: limegreen;
+    font-family: monospace;
+}

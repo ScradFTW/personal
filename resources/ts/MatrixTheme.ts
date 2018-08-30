@@ -1,7 +1,76 @@
 import * as $ from "jquery";
 import "jquery-ui-bundle"
 
-export class MatrixTheme implements Theme {
+interface Observable<T> {
+    addObserver(observer: T): void;
+
+    removeObserver(observer: T): void;
+}
+
+abstract class AbstractObservable<T> implements Observable<T> {
+    protected observers: [T];
+
+    addObserver(observer: T): void {
+        this.observers.push(observer);
+    }
+
+    removeObserver(observer: T): void {
+        let index = this.observers.indexOf(observer, 0);
+
+        // if observer exists, then remove
+        if (index > -1) {
+            this.observers.splice(index, 1);
+        } else {
+            throw new Error("Attempt to remove observer that does not exist");
+        }
+    }
+
+    protected abstract notify(args: any): void;
+}
+
+interface ThemeObserver {
+    initialized(): void;
+
+    destructed(): void;
+}
+
+abstract class AbstractTheme extends AbstractObservable<ThemeObserver> implements Theme {
+    private static readonly CSS_FOLDER = "css/";
+
+    init(): void {
+        this.notify(true)
+    }
+
+    destruct(): void {
+        this.notify(false);
+    }
+
+    /**
+     * Apply a CSS stylesheet file onto the document
+     *
+     * @param filename  -  The name of the stylesheet file to apply
+     */
+    protected applyStylesheet(filename: string) {
+        this.addObserver(new class implements ThemeObserver {
+            destructed(): void {
+            }
+
+            initialized(): void {
+            }
+        });
+    }
+
+    /**
+     * Notify all our listeners that we have either initialized or destructed
+     *
+     * @param isInit    -   true if the theme is initiated, false if it is destructed
+     */
+    protected notify(isInit: boolean): void {
+        this.observers.forEach((o) => isInit ? o.initialized() : o.destructed());
+    }
+}
+
+export class MatrixTheme extends AbstractTheme {
     private static readonly URL: string
         = "https://raw.githubusercontent.com/torvalds/linux/master/security/integrity/evm/evm_crypto.c";
 
@@ -9,6 +78,10 @@ export class MatrixTheme implements Theme {
      * Initialize the state of the Matrix Theme.
      */
     init(): void {
+        super.init();
+
+        this.applyStylesheet("matrixtheme.css");
+
         $(".draggable").css('display', 'none');
 
         // Add the terminal and matrix (code background) elements to the page
@@ -47,9 +120,13 @@ export class MatrixTheme implements Theme {
      * When we want to change the theme, we need to remove the elements specific to this theme
      */
     destruct(): void {
+        super.destruct();
+
         $("#terminal").remove();
         $("#matrix").remove();
-        $(".draggable").css('display', '').draggable("disable");
+        $(".draggable").css('display', '')
+            .attr('style', "")
+            .draggable("disable")
     }
 
     private makeTopElem(elems: any, top: boolean = true): void {
